@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd"></mule>
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="1055b833-0c40-4a1a-8b42-8a425a739615" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="rishi-apiFlow" doc:id="cf50d774-caaa-4646-8411-f2c87bd1779a" >
+		<http:listener doc:name="Listener" doc:id="308ba4fa-332e-4f3d-b9f0-3f9a8941f6f3" config-ref="HTTP_Listener_config" path="/par"/>
+		<logger level="INFO" doc:name="Logger" doc:id="f8962208-f50c-40ac-9a85-fee4de3c2cac" message="#[payload]"/>
+	</flow>
+</mule>
